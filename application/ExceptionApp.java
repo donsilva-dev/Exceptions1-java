@@ -34,24 +34,16 @@ public class ExceptionApp {
 			System.out.print("Check-out date (dd/MM/yyyy): ");
 			chechOut = sdf.parse(sc.next());
 
-			// Declarar uma variavel Date()
-			Date now = new Date();
+			
 
-			// Condição se data chechin ou data chechout anterior que data atual mostrar na
-			// tela um Error.
-			if (chechIn.before(now) || chechOut.before(now)) {
-				System.out.println("Error in reservation: Reservation dates for update must be future dates");
-			} else 
-				// se a data chechout não for posterior que data de chechin não pode ser aceito.
-
-			if (!chechOut.after(chechIn)) {
-				System.out.println("Error in reservation: chechout date must be after chechin date");
+			// Ai sim faço atualização!
+			String error = reservation.updateDate(chechIn, chechOut);
+			if (error != null) {
+				System.out.println("Error in reservation: " + error);
 			} else {
-				// Ai sim faço atualização!
-				reservation.updateDate(chechIn, chechOut);
+				
 				System.out.println(reservation);
 			}
-
 		}
 
 		sc.close();
